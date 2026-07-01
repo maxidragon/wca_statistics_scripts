@@ -1,12 +1,13 @@
 import csv
 import mysql.connector
 import os
+from pathlib import Path
 
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
     password="",
-    database="wca_development"
+    database="wca_statistics"
 )
 
 cur = conn.cursor(dictionary=True)
@@ -50,12 +51,14 @@ for comp in comps:
     newbies = cur.fetchall()
     total_new = len(newbies)
     returned = sum(1 for n in newbies if n["comps"] > 1)
+    print(f"{comp_id}: {total_new} newcomers, {returned} returned")
 
     rows.append([comp_id, comp["name"], total_new, returned])
 
-os.makedirs("output", exist_ok=True)
+output_dir = Path(__file__).parent / "output"
+output_dir.mkdir(exist_ok=True)
 
-with open("output/returning_newcomers_by_yera_in_poland.csv", "w", newline="", encoding="utf-8") as f:
+with open(output_dir / "returning_newcomers_by_year_in_poland.csv", "w", newline="", encoding="utf-8") as f:
     w = csv.writer(f)
     w.writerow(["competition_id", "competition_name", "newcomers", "returned_newcomers"])
     w.writerows(rows)
