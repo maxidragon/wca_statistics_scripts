@@ -1,85 +1,136 @@
-WCA Poland 2022-2026 — opis statystyk
-======================================
-
-COMPETITION TRENDS (competition_trends.py)
--------------------------------------------
-
-1. Zawody per kwartał
-   Zlicza ile zawodów WCA odbyło się w Polsce w każdym kwartale (Q1–Q4) każdego
-   roku. Pozwala zobaczyć sezonowość i czy liczba zawodów rośnie rok do roku.
-
-2. Zawody per miesiąc – lata nakładane
-   To samo co wyżej, ale w granularności miesięcznej i z liniami dla każdego roku
-   na jednym wykresie. Łatwiej porównać czy np. czerwiec 2024 miał więcej zawodów
-   niż czerwiec 2023.
-
-3. Skumulowana liczba zawodów YTD
-   Running sum zawodów w ciągu roku – po każdym miesiącu widzisz ile zawodów
-   odbyło się łącznie od stycznia. Jeśli linia 2025 jest wyżej niż 2024 już
-   w marcu, to rok jest "szybszy".
-
-4. Średnia/mediana frekwencji na zawodach
-   Dla każdego kwartału bierze wszystkie zawody i liczy średnią oraz medianę liczby
-   zawodników na zawodach. Mediana jest tu ważna bo kilka bardzo dużych zawodów
-   może zawyżać średnią.
+WCA Poland — chart descriptions
+================================
+All scripts accept --last N to restrict the analysis to the last N years.
+Default (no flag) = all available history (Poland WCA started in 2005).
 
 
-COMPETITOR ACTIVITY (competitor_activity.py)
----------------------------------------------
+COMPETITION TRENDS  (competition_trends.py  →  charts 1–4)
+------------------------------------------------------------
 
-5. Unikalni zawodnicy per kwartał
-   Ile różnych osób wystartowało w polskich zawodach w danym kwartale. Jedna osoba
-   liczona raz nawet jeśli jeździła na 5 zawodów w kwartale.
+1. Competitions per quarter
+   Counts how many WCA competitions took place in Poland in each quarter (Q1–Q4)
+   of each year. Shows seasonality and whether the number of events is growing
+   year over year.
 
-6. Nowicjusze vs powracający – stacked bar
-   Każdy słupek to łączna liczba unikalnych zawodników w kwartale, podzielona na
-   dwie grupy: ci którzy debiutowali (pierwszy start WCA w życiu) i ci którzy już
-   wcześniej startowali.
+2. Competitions per month — years overlaid
+   Same as above but at monthly granularity, with one line per year on a single
+   chart. Makes it easy to compare whether, say, June 2024 had more events than
+   June 2023.
 
-7. % nowicjuszy w kwartale
-   Odsetek nowicjuszy w łącznej puli zawodników per kwartał. Jeśli rośnie – scena
-   przyciąga więcej nowych ludzi względem stałych bywalców. Jeśli spada – baza
-   stałych zawodników rośnie szybciej niż napływ nowych.
+3. Cumulative competitions YTD
+   Running total of competitions within each year — after each month you can see
+   how many events have been held since January. If the 2025 line is above 2024
+   already in March, that year is "ahead of pace".
 
-8. Rozkład liczby startów per zawodnik per rok
-   Histogram: oś X to liczba zawodów, oś Y to ilu zawodników tyle razy pojechało.
-   Większość jedzie 1–2 razy w roku, nieliczni 10+. Czerwona linia to mediana.
-   Osobne panele dla każdego roku.
-
-9. Stale aktywni (3+ kwartały w roku)
-   Zawodnicy którzy pojechali na zawody w co najmniej 3 różnych kwartałach danego
-   roku – czyli byli aktywni przez większą część roku, nie tylko raz czy sezonowo.
-
-10. Trend aktywności per rok
-    Średnia, mediana i 75. percentyl liczby startów per zawodnik per rok jako linia
-    trendu. Pokazuje czy "przeciętny zawodnik" jeździ częściej czy rzadziej
-    z biegiem lat.
+4. Mean / median attendance per competition per quarter
+   For each quarter, takes all competitions held and computes the mean and median
+   number of competitors. Median matters because a few very large events can skew
+   the mean upwards.
 
 
-NEWCOMER COHORTS (newcomer_cohorts.py)
----------------------------------------
+COMPETITOR ACTIVITY  (competitor_activity.py  →  charts 5–10)
+---------------------------------------------------------------
 
-11. Nowicjusze per kwartał
-    Ile osób zadebiutowało w WCA (gdziekolwiek na świecie po raz pierwszy) właśnie
-    na polskich zawodach w danym kwartale. To inaczej niż wykres 6 – tu liczymy
-    tylko czyste debiuty, nie powroty.
+5. Unique competitors per quarter
+   How many distinct people competed in Polish events in a given quarter. One
+   person is counted once even if they attended five competitions in that quarter.
 
-12. Nowicjusze per miesiąc – lata nakładane
-    To samo co 11, ale miesięcznie z latami na jednym wykresie. Widać np. czy
-    wakacje to szczyt debiutów.
+6. Newcomers vs returning — stacked bar
+   Each bar is the total unique competitor count for a quarter, split into two
+   groups: those making their global WCA debut, and those who had competed before.
 
-13. Cohort retention % (3m / 6m / 12m)
-    Dla każdego kwartału debiutów: ile procent tych nowicjuszy wróciło na kolejne
-    polskie zawody w ciągu 3, 6 i 12 miesięcy od debiutu. Kohorta Q1 2022 =
-    wszyscy co zadebiutowali w Polsce w Q1 2022. Ostatnie kohorty mają niekompletne
-    dane 12m bo czas jeszcze nie minął.
+7. % newcomers per quarter
+   The share of newcomers in the total competitor pool per quarter. Rising share →
+   the scene is attracting more new people relative to regulars. Falling share →
+   the base of returning competitors is growing faster than the influx of new ones.
 
-14. Cohort retention bezwzględnie
-    To samo co 13, ale zamiast procentów – surowe liczby. Słupki dla 3m/6m/12m
-    obok siebie, plus linia z łączną liczbą nowicjuszy w danej kohorcie. Pozwala
-    zobaczyć jednocześnie skalę kohorty i jej retencję.
+8. Starts per person per year — histograms
+   One histogram panel per year. X = number of competitions attended, Y = how many
+   people attended that many. Most people go 1–2 times a year; very few go 10+.
+   Red line is the median. For wide date ranges the panels are arranged in a grid.
 
-15. Rozkład liczby powrotów per nowicjusz
-    Histogram ile razy wrócili nowicjusze (łącznie z wszystkich kohort). Słupek
-    przy 0 to ci którzy nigdy nie wrócili. W tytule wykresu podany jest ich
-    odsetek. Pokazuje czy "jednorazowcy" to większość czy mniejszość.
+9. Consistently active (3+ quarters in a year)
+   Competitors who attended events in at least 3 different quarters of a given year
+   — meaning they were active for most of the year rather than just once or
+   seasonally.
+
+10. Activity trend per year
+    Mean, median and 75th percentile of competitions attended per competitor per
+    year, shown as a trend line. Reveals whether the "average competitor" is
+    attending more or fewer events as time passes.
+
+
+NEWCOMER COHORTS  (newcomer_cohorts.py  →  charts 11–15)
+----------------------------------------------------------
+
+11. Newcomers per quarter (debuts only)
+    How many people made their global WCA debut at a Polish competition in each
+    quarter. Different from chart 6 — this counts only clean first-time debuters,
+    not people returning to Poland after competing abroad.
+
+12. Newcomers per month — years overlaid
+    Same as 11 but at monthly granularity with one line per year. Shows whether
+    summer is a peak debut period and how that pattern shifts year to year.
+
+13. Cohort retention % (3 / 6 / 12 months)
+    For each debut quarter: what percentage of those newcomers came back to another
+    Polish competition within 3, 6 or 12 months of their debut. Recent cohorts will
+    have incomplete 12-month data — annotated on the chart.
+
+14. Cohort retention — absolute numbers
+    Same as 13 but raw counts instead of percentages, with grouped bars for each
+    window (3m / 6m / 12m) and a dashed line for the total cohort size. Lets you
+    see the cohort scale alongside its retention at a glance.
+
+15. Return count distribution
+    Histogram of how many times each newcomer (across all cohorts) came back.
+    The bar at 0 = people who never returned. The chart title shows their
+    percentage. Answers the question "are one-timers the majority or the minority?"
+
+
+RECURRING SERIES  (recurring_series.py  →  charts 16–17)
+---------------------------------------------------------
+
+16. Recurring series heatmap (series × year)
+    Identifies competition series by stripping 4-digit years from competition names
+    (e.g. "Warsaw Open 2023" → "Warsaw Open"). Shows all series that appeared in
+    3+ different years as a grid: rows = series, columns = years, cell = competitor
+    count (— = no edition that year). Series labels include the typical month of
+    the event. Sorted by most editions first, then highest total attendance.
+
+17. Top recurring series — attendance trend
+    Line chart for the top 10 recurring series, showing how attendance changed
+    edition by edition over the years. Useful for spotting which series are growing,
+    shrinking or stagnating.
+
+
+NEWCOMER ATTRACTORS  (newcomer_attractors.py  →  charts 18–22)
+---------------------------------------------------------------
+Note: this script is standalone and not included in run_all.py.
+
+18. Top competitions by newcomer count
+    Horizontal bar chart of the 20 competitions that attracted the most absolute
+    newcomers. Bars are coloured by year.
+
+19. Top competitions by newcomer %
+    Same but normalised: top 20 by percentage of newcomers in the total field
+    (minimum 30 competitors to filter out tiny single-event competitions).
+
+20. Geographic bubble chart
+    City-level scatter plot on geographic coordinates (lat/lon). Bubble size =
+    total newcomers across all competitions held in that city. Bubble colour =
+    average newcomers per competition. Top 20 cities are labelled. The distribution
+    of Polish cities forms a recognisable map shape without a basemap.
+
+21. Newcomers by calendar month
+    Dual-axis chart: bars show average newcomer count per competition in each month;
+    line shows average % newcomers. Reveals the seasonal pattern of when new people
+    tend to show up.
+
+22. Average newcomer % by WCA event offered
+    For each WCA event (3x3, Pyraminx, Megaminx, etc.), computes the average
+    percentage of newcomers across all competitions that included that event.
+    Green = above overall average, orange = below. Shows whether certain events
+    (e.g. beginner-friendly puzzles like Pyraminx) correlate with higher newcomer
+    share. Correlation only — larger events tend to have more events AND fewer
+    newcomers proportionally, so interpret with that in mind.
