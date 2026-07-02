@@ -1,0 +1,85 @@
+WCA Poland 2022-2026 — opis statystyk
+======================================
+
+COMPETITION TRENDS (competition_trends.py)
+-------------------------------------------
+
+1. Zawody per kwartał
+   Zlicza ile zawodów WCA odbyło się w Polsce w każdym kwartale (Q1–Q4) każdego
+   roku. Pozwala zobaczyć sezonowość i czy liczba zawodów rośnie rok do roku.
+
+2. Zawody per miesiąc – lata nakładane
+   To samo co wyżej, ale w granularności miesięcznej i z liniami dla każdego roku
+   na jednym wykresie. Łatwiej porównać czy np. czerwiec 2024 miał więcej zawodów
+   niż czerwiec 2023.
+
+3. Skumulowana liczba zawodów YTD
+   Running sum zawodów w ciągu roku – po każdym miesiącu widzisz ile zawodów
+   odbyło się łącznie od stycznia. Jeśli linia 2025 jest wyżej niż 2024 już
+   w marcu, to rok jest "szybszy".
+
+4. Średnia/mediana frekwencji na zawodach
+   Dla każdego kwartału bierze wszystkie zawody i liczy średnią oraz medianę liczby
+   zawodników na zawodach. Mediana jest tu ważna bo kilka bardzo dużych zawodów
+   może zawyżać średnią.
+
+
+COMPETITOR ACTIVITY (competitor_activity.py)
+---------------------------------------------
+
+5. Unikalni zawodnicy per kwartał
+   Ile różnych osób wystartowało w polskich zawodach w danym kwartale. Jedna osoba
+   liczona raz nawet jeśli jeździła na 5 zawodów w kwartale.
+
+6. Nowicjusze vs powracający – stacked bar
+   Każdy słupek to łączna liczba unikalnych zawodników w kwartale, podzielona na
+   dwie grupy: ci którzy debiutowali (pierwszy start WCA w życiu) i ci którzy już
+   wcześniej startowali.
+
+7. % nowicjuszy w kwartale
+   Odsetek nowicjuszy w łącznej puli zawodników per kwartał. Jeśli rośnie – scena
+   przyciąga więcej nowych ludzi względem stałych bywalców. Jeśli spada – baza
+   stałych zawodników rośnie szybciej niż napływ nowych.
+
+8. Rozkład liczby startów per zawodnik per rok
+   Histogram: oś X to liczba zawodów, oś Y to ilu zawodników tyle razy pojechało.
+   Większość jedzie 1–2 razy w roku, nieliczni 10+. Czerwona linia to mediana.
+   Osobne panele dla każdego roku.
+
+9. Stale aktywni (3+ kwartały w roku)
+   Zawodnicy którzy pojechali na zawody w co najmniej 3 różnych kwartałach danego
+   roku – czyli byli aktywni przez większą część roku, nie tylko raz czy sezonowo.
+
+10. Trend aktywności per rok
+    Średnia, mediana i 75. percentyl liczby startów per zawodnik per rok jako linia
+    trendu. Pokazuje czy "przeciętny zawodnik" jeździ częściej czy rzadziej
+    z biegiem lat.
+
+
+NEWCOMER COHORTS (newcomer_cohorts.py)
+---------------------------------------
+
+11. Nowicjusze per kwartał
+    Ile osób zadebiutowało w WCA (gdziekolwiek na świecie po raz pierwszy) właśnie
+    na polskich zawodach w danym kwartale. To inaczej niż wykres 6 – tu liczymy
+    tylko czyste debiuty, nie powroty.
+
+12. Nowicjusze per miesiąc – lata nakładane
+    To samo co 11, ale miesięcznie z latami na jednym wykresie. Widać np. czy
+    wakacje to szczyt debiutów.
+
+13. Cohort retention % (3m / 6m / 12m)
+    Dla każdego kwartału debiutów: ile procent tych nowicjuszy wróciło na kolejne
+    polskie zawody w ciągu 3, 6 i 12 miesięcy od debiutu. Kohorta Q1 2022 =
+    wszyscy co zadebiutowali w Polsce w Q1 2022. Ostatnie kohorty mają niekompletne
+    dane 12m bo czas jeszcze nie minął.
+
+14. Cohort retention bezwzględnie
+    To samo co 13, ale zamiast procentów – surowe liczby. Słupki dla 3m/6m/12m
+    obok siebie, plus linia z łączną liczbą nowicjuszy w danej kohorcie. Pozwala
+    zobaczyć jednocześnie skalę kohorty i jej retencję.
+
+15. Rozkład liczby powrotów per nowicjusz
+    Histogram ile razy wrócili nowicjusze (łącznie z wszystkich kohort). Słupek
+    przy 0 to ci którzy nigdy nie wrócili. W tytule wykresu podany jest ich
+    odsetek. Pokazuje czy "jednorazowcy" to większość czy mniejszość.
