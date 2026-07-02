@@ -7,9 +7,12 @@ def parse_args():
     p = argparse.ArgumentParser()
     p.add_argument(
         "--last", type=int, default=None, metavar="N",
-        help="Last N years of Polish WCA data (default: all time)",
+        help="Last N years of Polish WCA data, e.g. --last 1, --last 5 (default: all time)",
     )
-    return p.parse_args()
+    args = p.parse_args()
+    if args.last is not None and args.last < 1:
+        p.error("--last must be a positive integer")
+    return args
 
 
 def apply_filter(comps_pl, att, args):
